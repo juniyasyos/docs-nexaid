@@ -1,75 +1,76 @@
 ---
-title: Pengenalan NexAID
-description: Apa itu NexAID, masalah yang diselesaikan, dan siapa yang menggunakannya.
+title: Pengenalan NexaID
+description: Memahami peran NexaID sebagai Identity Provider dan layanan Identity & Access Management.
 ---
 
-# Pengenalan NexAID
+# Pengenalan NexaID
 
-Selamat datang di dokumentasi resmi **NexAID** — platform *Identity and Access Management* (IAM) dan *Single Sign-On* (SSO) yang dirancang untuk kebutuhan organisasi modern.
+NexaID adalah platform **Identity and Access Management (IAM)** yang menyediakan layanan autentikasi, otorisasi, dan pengelolaan identitas pengguna secara terpusat. Dengan mekanisme **Single Sign-On (SSO)**, aplikasi dapat menggunakan satu layanan identitas yang sama tanpa perlu mengimplementasikan sistem login maupun manajemen pengguna secara terpisah.
 
-NexAID hadir sebagai **pusat otentikasi tunggal** yang aman dan mudah diintegrasikan. Dengan NexAID, seluruh ekosistem aplikasi di organisasi Anda terhubung ke satu titik identitas yang terpercaya.
+Selain berfungsi sebagai **Identity Provider (IdP)**, NexaID juga menjadi sumber utama data pengguna, struktur organisasi, serta kebijakan akses yang digunakan bersama oleh seluruh aplikasi yang terintegrasi.
 
-## Masalah yang Diselesaikan
+```mermaid
+graph TD
+    User([User]) -->|Authenticate| NexaID{NexaID}
 
-Tanpa sistem manajemen identitas yang terpusat, organisasi sering menghadapi tantangan berikut:
+    Admin([Administrator]) -->|Manage Users & Access| NexaID
 
-- **Pengguna memiliki banyak akun dan kata sandi** di masing-masing aplikasi — rentan terhadap kebocoran dan sulit dikelola.
-- **Hak akses yang tidak konsisten** — pengguna bisa saja masih memiliki akses ke sistem lama setelah berpindah divisi atau resign.
-- **Tidak ada visibilitas audit** — sulit melacak siapa mengakses apa, kapan, dan dari mana.
-- **Integrasi aplikasi baru memakan waktu** — setiap aplikasi harus membangun sistem autentikasinya sendiri.
+    NexaID --> AppA[Application A]
+    NexaID --> AppB[Application B]
+    NexaID --> AppC[Application C]
+````
 
-NexAID menyelesaikan semua itu melalui satu platform yang terpusat, terstandarisasi, dan mudah diintegrasikan.
+## Mengapa NexaID?
 
-## Apa Itu NexAID?
+Pada organisasi yang memiliki banyak aplikasi, setiap sistem sering kali mengelola pengguna, proses autentikasi, serta hak aksesnya sendiri. Pendekatan ini menyebabkan data identitas tersebar di berbagai aplikasi, meningkatkan beban administrasi, serta menyulitkan penerapan kebijakan akses yang konsisten.
 
-NexAID adalah platform otentikasi dan otorisasi terpusat yang menyediakan dua kapabilitas utama:
+NexaID memusatkan seluruh proses tersebut ke dalam satu layanan sehingga setiap aplikasi cukup mendelegasikan autentikasi dan pengelolaan identitas kepada NexaID. Dengan pendekatan ini, aplikasi dapat berfokus pada logika bisnis tanpa perlu membangun maupun memelihara sistem autentikasi sendiri.
 
-### Single Sign-On (SSO)
+Keuntungan yang diperoleh antara lain:
 
-Pengguna cukup **login satu kali** di portal NexAID, lalu dapat mengakses semua aplikasi yang terdaftar tanpa perlu login ulang. Ketika sesi NexAID berakhir, seluruh akses ke aplikasi yang terhubung secara otomatis dicabut.
+* **Single Sign-On (SSO)** untuk seluruh aplikasi.
+* **Identity Management** yang terpusat.
+* **Role, Permission, dan Access Profile** yang konsisten.
+* **Manajemen organisasi** (departemen, unit kerja, dan jabatan) yang terintegrasi.
+* **Session Management** dan **Audit Log** yang dikelola dari satu tempat.
+* **Integrasi aplikasi** yang lebih sederhana menggunakan standar autentikasi.
+* **Kustomisasi halaman login** sesuai identitas visual perusahaan.
 
-::: tip Manfaat SSO
-Login sekali, akses semua. Tidak ada lagi password berbeda untuk setiap aplikasi — meningkatkan produktivitas sekaligus keamanan organisasi.
-:::
+## Kemampuan Utama
 
-### Identity & Access Management (IAM)
+NexaID menyediakan beberapa layanan inti yang dapat digunakan bersama oleh seluruh aplikasi.
 
-NexAID menyediakan manajemen identitas yang lengkap:
+| Layanan                     | Deskripsi                                                                                                   |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Identity Management**     | Mengelola identitas pengguna sebagai sumber data utama seluruh aplikasi.                                    |
+| **Single Sign-On (SSO)**    | Melakukan autentikasi satu kali untuk mengakses beberapa aplikasi yang terhubung.                           |
+| **Access Management**       | Mengelola Role, Permission, dan Access Profile secara terpusat.                                             |
+| **Organization Management** | Mengelola struktur organisasi, departemen, unit kerja, dan jabatan.                                         |
+| **Application Management**  | Mendaftarkan dan mengonfigurasi aplikasi yang terintegrasi dengan NexaID.                                   |
+| **Session Management**      | Mengelola sesi login, logout, serta pemantauan sesi aktif pengguna.                                         |
+| **Audit Logs**              | Mencatat aktivitas autentikasi dan perubahan konfigurasi sebagai kebutuhan audit dan keamanan.              |
+| **Custom Login Experience** | Menyesuaikan tampilan halaman login menggunakan logo, warna, ilustrasi, maupun identitas visual perusahaan. |
 
-- **Pengguna (Users)** — data identitas terpusat untuk seluruh anggota organisasi.
-- **Role & Permission** — hak akses yang dapat dikonfigurasi secara granular per aplikasi.
-- **Access Profile** — bundel permission yang dapat ditetapkan ke pengguna atau grup.
-- **Departemen** — pengelompokan pengguna berdasarkan unit organisasi.
+## Siapa yang Menggunakan NexaID?
 
-Setiap perubahan hak akses di NexAID secara otomatis didistribusikan ke seluruh aplikasi klien yang terhubung — tanpa konfigurasi manual di masing-masing aplikasi.
+NexaID digunakan oleh beberapa peran yang berbeda di dalam organisasi.
 
-## Siapa Pengguna NexAID?
+### Administrator
 
-NexAID melayani tiga kelompok pengguna utama:
+Bertanggung jawab mengelola pengguna, organisasi, aplikasi, role, permission, access profile, serta kebijakan akses melalui dashboard administrasi.
 
-### 👤 Pengguna Akhir (End User)
+### Developer
 
-Karyawan atau anggota organisasi yang menggunakan aplikasi sehari-hari. Mereka cukup login satu kali melalui portal NexAID dan langsung dapat mengakses semua aplikasi yang telah mendapat izin sesuai peran mereka.
+Mengintegrasikan aplikasi dengan NexaID menggunakan protokol autentikasi yang didukung, mengimplementasikan proses login, serta memanfaatkan identitas pengguna yang disediakan oleh NexaID.
 
-### 🛡️ Administrator
+### End User
 
-Tim IT atau administrator sistem yang bertanggung jawab atas:
+Melakukan autentikasi melalui NexaID untuk mengakses aplikasi yang telah diberikan izin sesuai hak akses yang dimiliki.
 
-- Manajemen pengguna, role, permission, dan departemen.
-- Pendaftaran dan konfigurasi aplikasi klien.
-- Pemantauan sesi aktif dan audit log.
-- Pengaturan kebijakan akses di seluruh organisasi.
+---
 
-### 👩‍💻 Developer / Tim Integrasi
+::: info Langkah Selanjutnya
 
-Developer yang mengintegrasikan aplikasi ke ekosistem NexAID. Mereka menggunakan API dan alur SSO NexAID untuk:
+Jika ini adalah pertama kalinya menggunakan NexaID, lanjutkan ke **Quick Start** untuk menjalankan aplikasi dan melakukan konfigurasi awal.
 
-- Mendelegasikan otentikasi pengguna ke NexAID.
-- Menerima dan memvalidasi JWT token dari NexAID.
-- Menyinkronkan data hak akses pengguna ke aplikasi klien.
-
-::: info Mulai dari Mana?
-- **Pengguna baru yang ingin mencoba**: Lihat panduan [Quick Start](./quick-start).
-- **Memahami konsep dasar**: Baca halaman [Konsep Inti](./core-concepts).
-- **Langsung integrasi SSO**: Mulai dari [Overview SSO](../sso/).
-:::
+Selanjutnya, pelajari **Core Concepts** untuk memahami komponen utama seperti Identity, Organization, Application, Role, Permission, dan Access Profile sebelum melakukan integrasi aplikasi.

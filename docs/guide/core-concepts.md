@@ -1,152 +1,170 @@
 ---
-title: Konsep Inti NexAID
-description: Memahami konsep dasar SSO, IAM, token, sesi, dan manajemen akses di NexAID dari perspektif pengguna.
+title: Konsep Inti
+description: Memahami konsep dasar yang digunakan oleh NexaID sebelum melakukan konfigurasi atau integrasi aplikasi.
 ---
 
-# Konsep Inti NexAID
+# Konsep Inti
 
-Halaman ini menjelaskan konsep-konsep fundamental yang perlu dipahami sebelum menggunakan atau mengintegrasikan NexAID.
+Sebelum menggunakan atau mengintegrasikan NexaID, penting untuk memahami beberapa konsep dasar yang menjadi fondasi seluruh fitur di dalam platform ini.
 
----
+NexaID memisahkan tanggung jawab antara **identitas pengguna**, **autentikasi**, **otorisasi**, dan **aplikasi** sehingga setiap komponen memiliki peran yang jelas serta dapat digunakan bersama oleh seluruh aplikasi dalam organisasi.
 
-## Single Sign-On (SSO)
 
-**Single Sign-On** adalah mekanisme di mana pengguna cukup **login satu kali** untuk mendapatkan akses ke semua aplikasi yang terhubung ke NexAID — tanpa perlu memasukkan kredensial berulang.
+## Gambaran Umum
 
-### Cara Kerja SSO di NexAID
-
-1. Pengguna membuka aplikasi klien dan mengklik "Login".
-2. Aplikasi klien mengarahkan pengguna ke halaman login **NexAID**.
-3. Pengguna memasukkan kredensial di NexAID.
-4. NexAID memverifikasi identitas dan menerbitkan **JWT token**.
-5. Pengguna diarahkan kembali ke aplikasi klien dengan token tersebut.
-6. Aplikasi klien memvalidasi token ke NexAID, lalu membuat sesi lokal.
-
-::: tip Satu Sesi, Banyak Aplikasi
-Jika pengguna sudah pernah login di NexAID dan sesinya masih aktif, saat membuka aplikasi klien lain mereka akan langsung diarahkan kembali dengan token baru — tanpa perlu login lagi.
-:::
-
----
-
-## Identity & Access Management (IAM)
-
-IAM adalah sistem yang mengatur **siapa dapat mengakses apa**. Di NexAID, IAM mencakup:
-
-### Pengguna (User)
-
-Setiap anggota organisasi memiliki akun pengguna di NexAID. Data pengguna bersifat terpusat — perubahan profil, status, atau hak akses langsung berlaku di seluruh aplikasi klien yang terhubung.
-
-### Role
-
-**Role** adalah label jabatan atau fungsi yang diberikan kepada pengguna (misalnya: `admin`, `staff`, `manager`, `viewer`). Satu pengguna dapat memiliki lebih dari satu role.
-
-```
-Pengguna: Budi Santoso
-Role    : staff, admin-keuangan
-```
-
-### Permission
-
-**Permission** adalah izin akses spesifik terhadap suatu fitur atau resource (misalnya: `laporan.baca`, `pengguna.tambah`, `data.ekspor`). Permission ditetapkan secara granular dan dapat berbeda-beda per aplikasi klien.
-
-### Access Profile
-
-**Access Profile** adalah kumpulan (*bundle*) dari beberapa permission yang dikelompokkan menjadi satu profil akses. Access Profile memudahkan pemberian hak akses massal — cukup tetapkan satu profil ke pengguna, semua permission di dalamnya langsung berlaku.
-
-```
-Access Profile: "Staff Keuangan"
-  └── laporan.baca
-  └── laporan.ekspor
-  └── anggaran.lihat
-```
-
-::: info Distribusi Otomatis
-Setiap kali Access Profile diubah atau pengguna dipindahkan ke departemen lain, NexAID secara otomatis mendistribusikan pembaruan hak akses ke seluruh aplikasi klien yang terhubung.
-:::
-
-### Departemen
-
-**Departemen** merepresentasikan unit organisasi (misalnya: Keuangan, HRD, IT). Pengelompokan ini digunakan untuk memudahkan manajemen pengguna dalam jumlah besar dan dapat menjadi dasar penetapan Access Profile secara massal.
-
----
-
-## Aplikasi Klien
-
-**Aplikasi Klien** adalah sistem atau aplikasi pihak ketiga yang telah didaftarkan dan terintegrasi ke NexAID. Setelah terdaftar, aplikasi klien:
-
-- Mendelegasikan proses otentikasi pengguna ke NexAID.
-- Menerima JWT token setelah login berhasil.
-- Memperoleh data hak akses pengguna dari NexAID.
-
-Setiap aplikasi klien memiliki **App Key** unik sebagai identitas saat berkomunikasi dengan NexAID.
-
----
-
-## Token & Sesi
-
-### JWT Token
-
-**JWT (JSON Web Token)** adalah token terenkripsi yang diterbitkan NexAID setelah pengguna berhasil login. Token ini berisi:
-
-- Identitas pengguna (ID, nama, email).
-- Role dan permission yang dimiliki.
-- Waktu kadaluarsa (*expiry time*).
-
-JWT token digunakan oleh aplikasi klien untuk memverifikasi identitas pengguna tanpa harus menyimpan data sensitif secara lokal.
-
-::: warning Penyimpanan Token
-Simpan JWT token di **server-side session** atau **HttpOnly Cookie** — bukan di LocalStorage. LocalStorage rentan terhadap serangan XSS (*Cross-Site Scripting*).
-:::
-
-### Sesi NexAID vs Sesi Lokal
-
-| Aspek | Sesi NexAID | Sesi Lokal (Aplikasi Klien) |
-|-------|------------|----------------------------|
-| Dikelola oleh | NexAID | Aplikasi klien |
-| Scope | Semua aplikasi klien | Hanya aplikasi tersebut |
-| Berakhir saat | Logout global / timeout | Logout lokal / timeout |
-| Efek logout | Semua aplikasi terputus | Hanya aplikasi ini |
-
-### Validasi Token
-
-Aplikasi klien harus memvalidasi token yang diterima ke endpoint NexAID sebelum membuat sesi lokal:
-
-```http
-POST /api/auth/session-from-token
-Authorization: Bearer {JWT_TOKEN}
-```
-
----
-
-## Ringkasan Hubungan Konsep
+Diagram berikut menunjukkan hubungan antar komponen utama di dalam NexaID.
 
 ```mermaid
 graph TD
-    NexAID[NexAID <br/> Identity Provider]
-    Pengguna[Pengguna]
-    Role[Role]
-    AccessProfile[Access Profile]
-    Permission[Permission]
-    Departemen[Departemen]
-    AplikasiKlien[Aplikasi Klien]
 
-    NexAID --> Pengguna
-    NexAID --> Departemen
-    NexAID --> AplikasiKlien
+    Organization["Organization"]
+    Department["Department"]
+    User["User"]
+    AccessProfile["Role Bundels"]
+    Role["Role App"]
+    Permission["Permission"]
+    Application["Application"]
+    Session["Session"]
 
-    Pengguna -- memiliki --> Role
-    Pengguna -- memiliki --> AccessProfile
-    AccessProfile -- menghubungkan --> Role
-    AccessProfile -- menghubungkan --> Permission
-    Role -- memiliki --> Permission
-    Departemen -- mengelompokkan --> Pengguna
+    Organization --> Department
+    Department --> User
 
-    AplikasiKlien -- menerima --> JWT[JWT Token <br/> saat login]
-    AplikasiKlien -- menerima --> Push[Push Hak Akses <br/> saat perubahan]
+    User --> AccessProfile
+
+    AccessProfile --> Role
+    AccessProfile --> Permission
+
+    Role --> Application
+    Permission --> Application
+
+    User --> Session
+    Session --> Application
 ```
 
-Dengan memahami konsep-konsep ini, Anda siap untuk mengeksplorasi:
 
-- 🔐 [Alur SSO](../sso/flow) — detail teknis proses login SSO.
-- 👥 [Manajemen IAM](../iam/) — cara mengelola pengguna, role, dan permission.
-- 🔌 [API Reference](../api/) — endpoint lengkap untuk integrasi.
+## Identity
+
+Identity merepresentasikan informasi utama yang digunakan untuk mengenali seorang pengguna di seluruh aplikasi.
+
+Di NexaID, setiap pengguna hanya memiliki satu identitas yang digunakan bersama oleh seluruh aplikasi yang terintegrasi. Informasi seperti nama, email, NIP, status akun, jabatan, maupun unit kerja dikelola secara terpusat sehingga perubahan data tidak perlu dilakukan pada setiap aplikasi secara terpisah.
+
+
+## Authentication
+
+Authentication adalah proses memverifikasi identitas pengguna sebelum akses diberikan.
+
+NexaID bertindak sebagai **Identity Provider (IdP)** yang menangani proses autentikasi melalui **Single Sign-On (SSO)**. Setelah pengguna berhasil login, aplikasi tidak lagi melakukan autentikasi sendiri, tetapi mempercayakan hasil autentikasi tersebut kepada NexaID.
+
+Dengan pendekatan ini, pengguna hanya perlu melakukan login satu kali untuk mengakses beberapa aplikasi yang telah terhubung.
+
+
+## Authorization
+
+Authorization menentukan sumber daya (*resource*) apa saja yang dapat diakses oleh pengguna setelah berhasil diautentikasi.
+
+NexaID menggunakan tiga komponen utama untuk mengelola hak akses.
+
+| Komponen | Fungsi |
+|----------|--------|
+| **Role** | Merepresentasikan fungsi atau tanggung jawab pengguna di dalam aplikasi. |
+| **Permission** | Mendefinisikan izin terhadap fitur atau resource tertentu. |
+| **Access Profile** | Mengelompokkan Role dan Permission sehingga hak akses dapat diberikan secara lebih mudah dan konsisten. |
+
+Dengan pendekatan tersebut, administrator tidak perlu memberikan permission satu per satu kepada setiap pengguna.
+
+
+## Organization
+
+Organization digunakan untuk memodelkan struktur organisasi di dalam perusahaan atau instansi.
+
+Komponen ini biasanya terdiri atas:
+
+- Organization
+- Department
+- Unit Kerja
+- Job Position
+
+Struktur organisasi dapat digunakan sebagai dasar pengelompokan pengguna maupun pemberian hak akses sesuai kebutuhan organisasi.
+
+
+## Application
+
+Application adalah sistem yang mempercayakan proses autentikasi kepada NexaID.
+
+Setiap aplikasi yang ingin menggunakan layanan Single Sign-On harus didaftarkan terlebih dahulu sehingga memperoleh identitas aplikasi (*App Key*) dan konfigurasi autentikasi yang diperlukan.
+
+Setelah terdaftar, aplikasi dapat menggunakan NexaID sebagai pusat autentikasi tanpa perlu membangun sistem login sendiri.
+
+
+## Session
+
+Session merepresentasikan status autentikasi pengguna setelah berhasil login.
+
+Pada implementasi NexaID terdapat dua jenis sesi.
+
+| Session | Dikelola Oleh |
+|----------|---------------|
+| **NexaID Session** | NexaID |
+| **Application Session** | Aplikasi Klien |
+
+Session NexaID digunakan untuk mempertahankan status login pengguna di seluruh aplikasi, sedangkan aplikasi klien tetap memiliki session lokal yang digunakan untuk kebutuhan internal aplikasi tersebut.
+
+
+## Hubungan Antar Konsep
+
+Secara sederhana, alur kerja NexaID dapat digambarkan sebagai berikut.
+
+1. Pengguna melakukan autentikasi melalui NexaID.
+2. NexaID memverifikasi identitas pengguna.
+3. NexaID menentukan hak akses berdasarkan Organization, Role, Permission, dan Access Profile.
+4. Aplikasi menerima identitas pengguna beserta informasi hak akses.
+5. Aplikasi menggunakan informasi tersebut untuk menentukan fitur yang dapat diakses oleh pengguna.
+
+Diagram berikut menggambarkan alur tersebut.
+
+```mermaid
+graph LR
+
+User[User]
+
+NexaID[NexaID]
+
+Identity[Identity]
+
+Authorization[Authorization]
+
+Application[Application]
+
+User --> NexaID
+
+NexaID --> Identity
+
+Identity --> Authorization
+
+Authorization --> Application
+```
+
+
+## Ringkasan
+
+NexaID dibangun di atas beberapa konsep utama yang saling berkaitan.
+
+- **Identity** menyimpan identitas pengguna secara terpusat.
+- **Authentication** memverifikasi identitas melalui Single Sign-On.
+- **Authorization** menentukan hak akses berdasarkan Role, Permission, dan Access Profile.
+- **Organization** mengelola struktur organisasi.
+- **Application** menggunakan NexaID sebagai Identity Provider.
+- **Session** mempertahankan status autentikasi pengguna.
+
+Memahami konsep-konsep tersebut akan memudahkan Anda dalam mengelola pengguna, mengintegrasikan aplikasi, maupun memahami alur autentikasi yang digunakan oleh NexaID.
+
+
+::: info Langkah Selanjutnya
+
+Selanjutnya Anda dapat mempelajari dokumentasi berikut sesuai kebutuhan.
+
+- **Organizations** — Memahami struktur organisasi dan unit kerja.
+- **Users** — Mengelola identitas pengguna.
+- **Applications** — Mendaftarkan aplikasi ke NexaID.
+- **Single Sign-On** — Mempelajari alur autentikasi secara teknis.
+- **Sessions** — Memahami pengelolaan sesi pengguna.

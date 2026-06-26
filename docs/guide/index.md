@@ -6,8 +6,6 @@ NexaID adalah platform **Identity and Access Management (IAM)** yang membantu or
 
 Panduan ini dirancang untuk membantu administrator maupun developer memahami cara kerja NexaID, mulai dari konsep dasar hingga implementasi Single Sign-On (SSO).
 
----
-
 ## Apa yang Akan Dipelajari?
 
 Dalam panduan ini Anda akan mempelajari:
@@ -23,9 +21,7 @@ Dalam panduan ini Anda akan mempelajari:
 - Session Management
 - Audit Log
 
----
-
-## Alur Belajar
+## Guideline
 
 Bagi pengguna baru, disarankan mengikuti urutan berikut.
 
@@ -34,15 +30,12 @@ Bagi pengguna baru, disarankan mengikuti urutan berikut.
 3. Core Concepts
 4. Organizations
 5. Users
-6. Jobs
-7. Access Profiles
-8. Roles & Permissions
-9. Applications
-10. Single Sign-On
-11. Sessions
-12. Audit Logs
-
----
+6. Access Profiles
+7. Roles
+8. Applications
+9. Single Sign-On
+10. Sessions
+11. Audit Logs
 
 ## Siapa yang Menggunakan Dokumentasi Ini?
 
@@ -51,8 +44,6 @@ Dokumentasi ini ditujukan untuk:
 - **Administrator** yang mengelola pengguna dan akses aplikasi.
 - **Developer** yang ingin mengintegrasikan aplikasi dengan NexaID.
 - **IT Administrator** yang bertanggung jawab terhadap autentikasi dan keamanan akses perusahaan.
-
----
 
 ## Selanjutnya
 

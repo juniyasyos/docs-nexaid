@@ -332,9 +332,11 @@ html:not(.dark) {
   color: var(--vp-c-brand-2);
   background-color: rgba(189, 52, 254, 0.08);
   padding: 0.2rem 0.4rem;
+  margin-left: 1rem;
   border-radius: 6px;
   font-size: 0.9em;
 }
+
 
 .vp-doc div[class*="language-"] code {
   color: inherit;
