@@ -1,77 +1,77 @@
-# Rencana Pengembangan Dokumentasi NexaID
+# Rencana Pengembangan Dokumentasi: Fase "Guide"
 
-Dokumen ini adalah cetak biru (blueprint) untuk merapikan, melengkapi, dan menyusun ulang dokumentasi **NexaID (Identity and Access Management Platform)** agar lebih terstruktur, mudah dipahami, dan profesional.
-
----
-
-## 1. Evaluasi Kondisi Saat Ini
-Saat ini struktur *sidebar* sudah terpetakan dengan baik (Guide, SSO, IAM, Applications, Deployment, Troubleshooting), namun konten di dalamnya masih kosong atau belum terarah. Kita perlu fokus membangun fondasi yang kuat mulai dari **Guide**, karena ini adalah gerbang pertama bagi developer yang ingin menggunakan NexaID.
+Berdasarkan referensi utama pada `docs/guide/index.md`, fokus perencanaan dokumentasi ini akan dialokasikan secara eksklusif untuk melengkapi dan merestrukturisasi bagian **Guide**. Bagian ini merupakan fondasi "Alur Belajar" yang berurutan bagi pengguna baru (Administrator maupun Developer).
 
 ---
 
-## 2. Fase 1: Fokus pada `Guide` (Prioritas Utama)
-
-Bagian *Guide* harus memberikan pemahaman fundamental sebelum pengguna masuk ke teknis spesifik seperti SSO atau IAM.
-
-### A. Introduction (`/guide/introduction.md`)
-Halaman ini harus memukau dan langsung menjawab *"Mengapa NexaID?"*
-* **What is NexaID?**: Penjelasan singkat bahwa NexaID adalah platform IAM modern.
-* **Key Features**: Highlight fitur utama (SSO, Role-Based Access Control, JWT, Scalability).
-* **Target Audience**: Siapa yang harus menggunakan ini (Developer, System Administrator, Enterprise).
-* **Architecture High-Level**: *Mermaid diagram* sederhana yang menunjukkan interaksi User -> NexaID -> Applications.
-
-### B. Quick Start (`/guide/quick-start.md`)
-Fokus pada *Time-to-Value* yang cepat. Developer harus bisa menjalankan NexaID dalam waktu kurang dari 5 menit.
-* **Prerequisites**: Apa yang dibutuhkan (Docker, Node.js, Bun, dll).
-* **Running Locally**: Command untuk menjalankan via `docker-compose up` atau bun script.
-* **First Login**: Cara login ke Admin Console pertama kali (default credentials).
-* **Next Steps**: Link ke bagian registrasi aplikasi atau pembuatan user.
-
-### C. Core Concepts (`/guide/core-concepts.md`)
-Penting untuk menyamakan kosakata (glosarium) yang digunakan di seluruh ekosistem NexaID.
-* **Identities vs Users**: Perbedaan identitas global dan user spesifik.
-* **Roles & Permissions**: Konsep RBAC (Role-Based Access Control) di NexaID.
-* **Applications & Clients**: Konsep aplikasi yang didaftarkan (Client ID, Client Secret).
-* **Tokens**: Penjelasan tentang Access Token, Refresh Token, dan ID Token (OIDC).
+## 1. Tujuan Fase Ini
+Menyelesaikan seluruh 12 topik utama yang telah didefinisikan dalam *Alur Belajar* agar pembaca memiliki pemahaman yang solid mulai dari instalasi awal hingga fitur lanjutan (SSO & Audit Logs).
 
 ---
 
-## 3. Fase 2: Pendalaman Fitur Inti
+## 2. Struktur Konten Guide (Alur Belajar)
 
-Setelah *Guide* selesai, kita akan bergerak ke dokumentasi fitur secara spesifik:
+Setiap halaman di bawah ini akan diisi dengan penjelasan terstruktur, *best practices*, serta diagram visual jika memungkinkan.
 
-### A. Single Sign-On (SSO)
-* **SSO Flow**: Visualisasi dengan *Mermaid Sequence Diagram* bagaimana Authorization Code Flow bekerja.
-* **Login & Logout**: Penjelasan *redirect URIs*, pengelolaan sesi, dan *back-channel logout*.
+### 1. Introduction (`/guide/introduction.md`)
+- Penjabaran ulang apa itu NexaID.
+- *Value proposition*: Kenapa menggunakan NexaID dibandingkan platform IAM lainnya?
+- Arsitektur *High-Level* (Diagram Mermaid).
 
-### B. Identity & Access Management (IAM)
-* **Users & Departments**: Panduan mengelola struktur organisasi pengguna.
-* **Access Profiles**: Cara menggunakan profil akses untuk mengotomatisasi *Roles* & *Permissions*.
+### 2. Quick Start (`/guide/quick-start.md`)
+- Panduan eksekusi kilat.
+- Persyaratan sistem.
+- *Command* instalasi (*Docker / Bun*).
+- Login pertama ke dashboard admin.
 
-### C. Applications Integration
-* **App Registration**: Panduan step-by-step mendaftarkan aplikasi pihak ketiga.
-* **SDKs & Libraries**: Cara menggunakan library OIDC/OAuth2 standar untuk terhubung ke NexaID.
+### 3. Core Concepts (`/guide/core-concepts.md`)
+- Glosarium istilah penting yang sering digunakan (Tenants, Identity, Tokens).
+- Penjelasan singkat konsep autentikasi vs otorisasi.
+
+### 4. Organizations (`/guide/organizations.md`)
+- Cara NexaID memodelkan struktur organisasi.
+- *Tenant* tunggal vs multi-tenant.
+- Unit kerja / departemen.
+
+### 5. Users (`/guide/users.md`)
+- Manajemen siklus hidup pengguna (Pembuatan, Update, Suspend, Hapus).
+- Atribut standar pengguna.
+
+### 6. Jobs (`/guide/jobs.md`)
+- Konsep hierarki "Jabatan" di NexaID.
+- Hubungan antara pengguna dengan jabatannya di dalam unit kerja tertentu.
+
+### 7. Access Profiles (`/guide/access-profiles.md`)
+- Penjelasan konsep *Access Profile*.
+- Bagaimana profil akses menyederhanakan *assignment* hak akses untuk berbagai jenis karyawan/pengguna.
+
+### 8. Roles & Permissions (`/guide/roles-permissions.md`)
+- Sistem *Role-Based Access Control* (RBAC) di NexaID.
+- Cara kerja *Roles* (Grup izin) dan *Permissions* (Hak akses granular).
+
+### 9. Applications (`/guide/applications.md`)
+- Cara mendaftarkan aplikasi klien (Client ID & Secret).
+- Jenis-jenis aplikasi yang didukung (Web, SPA, Mobile).
+
+### 10. Single Sign-On (`/guide/single-sign-on.md`)
+- Penjelasan *SSO Flow* menggunakan OIDC / OAuth2.
+- *Sequence diagram* alur login (Mermaid.js).
+- *Callback URIs* dan konfigurasi *Client*.
+
+### 11. Sessions (`/guide/sessions.md`)
+- Cara NexaID menangani sesi pengguna secara terpusat.
+- Mekanisme *logout* (*Back-channel* dan *Front-channel*).
+
+### 12. Audit Logs (`/guide/audit-logs.md`)
+- Mengapa audit log penting untuk IAM.
+- Aktivitas apa saja yang direkam.
+- Cara mencari dan membaca log keamanan.
 
 ---
 
-## 4. Fase 3: Operasional & Troubleshooting
+## 3. Langkah Selanjutnya (Action Items)
 
-Bagian akhir untuk memastikan NexaID siap dipakai di *Production*.
-* **Deployment**: Panduan *environment variables*, konfigurasi *database*, dan *High Availability* (HA).
-* **Troubleshooting**: Daftar error codes umum (misal: *invalid_grant*, *unauthorized_client*) beserta solusinya.
-
----
-
-## 5. Standar Penulisan Dokumentasi (Guidelines)
-
-Agar dokumentasi tetap rapi (tidak karuan) ke depannya, kita harus mematuhi aturan berikut:
-1. **Bahasa**: Gunakan bahasa yang teknis namun mudah dicerna (konsisten menggunakan Bahasa Indonesia/Inggris).
-2. **Visual**: Wajib gunakan diagram (Mermaid.js) untuk menjelaskan alur/flow yang rumit.
-3. **Alerts**: Gunakan GitHub/VitePress Alerts (`::: info`, `::: warning`, `::: danger`) untuk menyoroti hal penting.
-4. **Code Snippets**: Semua contoh kode harus bisa di-copy-paste dan menggunakan sintaks *highlighting* yang tepat.
-
----
-
-### Langkah Eksekusi Selanjutnya:
-1. Apakah struktur **Guide** di atas sudah sesuai dengan visi Anda untuk NexaID?
-2. Jika setuju, saya akan mulai menulis konten untuk **`/guide/introduction.md`** dan **`/guide/quick-start.md`** dengan format markdown yang profesional dan menyertakan diagram diagram pendukung.
+- [ ] **Action 1:** Meng-update sidebar konfigurasi VitePress (`docs/.vitepress/config.mts`) agar sesuai dengan daftar urutan (12 item) di atas.
+- [ ] **Action 2:** Membuat *file markdown* kosong untuk topik-topik (4-12) yang belum ada di dalam folder `docs/guide/`.
+- [ ] **Action 3:** Memulai penulisan *Draft 1* untuk dokumen *Introduction* dan *Quick Start*.
+- [ ] **Action 4:** Menambahkan diagram (Mermaid) pada *Core Concepts*, *Organizations*, dan *SSO*.
