@@ -3,6 +3,7 @@ import { withMermaid } from 'vitepress-plugin-mermaid'
 
 export default withMermaid(
   defineConfig({
+  base: '/docs-nexaid/',
   title: 'NexaID Docs',
   description: 'Documentation for NexaID Identity and Access Management platform.',
 
