@@ -7,12 +7,14 @@ export default withMermaid(
   title: 'NexaID Docs',
   description: 'Documentation for NexaID Identity and Access Management platform.',
   head: [['link', { rel: 'icon', href: '/docs-nexaid/logo.jpg' }]],
+  appearance: false,
 
   cleanUrls: true,
   lastUpdated: true,
 
   themeConfig: {
     logo: '/logo.jpg',
+    outline: false,
 
     nav: [
       { text: 'Docs', link: '/guide/', activeMatch: '^/(guide|sso|iam|applications|deployment|troubleshooting)/' },
