@@ -217,3 +217,180 @@ html:not(.dark) {
     width: 100%;
   }
 }
+
+/* ==========================================================================
+   Modern VitePress Theme Overrides 
+   ========================================================================== */
+:root {
+  /* Brand colors: vibrant modern gradient */
+  --vp-c-brand-1: #41d1ff;
+  --vp-c-brand-2: #bd34fe;
+  --vp-c-brand-3: #ff41a1;
+  --vp-c-brand-soft: rgba(65, 209, 255, 0.16);
+
+  /* Typography */
+  --vp-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', 'Roboto Mono', source-code-pro, Menlo, Monaco, Consolas, monospace;
+  
+  /* Layout */
+  --vp-layout-max-width: 1280px;
+}
+
+/* Base element styles for better readability */
+.vp-doc h1 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: -webkit-linear-gradient(120deg, var(--vp-c-brand-1) 10%, var(--vp-c-brand-2) 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.vp-doc h2 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  border-bottom: 2px solid var(--vp-c-divider);
+  padding-bottom: 0.75rem;
+  margin-top: 3rem;
+}
+
+.vp-doc h3 {
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.vp-doc p {
+  line-height: 1.8;
+  font-size: 1.05rem;
+  color: var(--vp-c-text-2);
+  margin-bottom: 1.5rem;
+}
+
+.vp-doc strong {
+  color: var(--vp-c-text-1);
+  font-weight: 600;
+}
+
+.vp-doc a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--vp-c-brand-1);
+  transition: all 0.2s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.vp-doc a:hover {
+  color: var(--vp-c-brand-2);
+  border-bottom: 1px solid var(--vp-c-brand-2);
+}
+
+/* Custom Blocks / Alerts styling */
+.vp-doc .custom-block {
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--vp-c-divider);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 2rem 0;
+  padding: 1.5rem;
+}
+
+.vp-doc .custom-block:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.vp-doc .custom-block.info {
+  background-color: rgba(65, 209, 255, 0.05);
+  border-left: 4px solid var(--vp-c-brand-1);
+}
+
+.vp-doc .custom-block.warning {
+  background-color: rgba(255, 171, 0, 0.05);
+  border-left: 4px solid #ffab00;
+}
+
+.vp-doc .custom-block.danger {
+  background-color: rgba(255, 86, 48, 0.05);
+  border-left: 4px solid #ff5630;
+}
+
+.vp-doc .custom-block.tip {
+  background-color: rgba(54, 179, 126, 0.05);
+  border-left: 4px solid #36b37e;
+}
+
+/* Code Blocks */
+.vp-doc div[class*="language-"] {
+  border-radius: 12px;
+  background-color: var(--vp-code-block-bg);
+  box-shadow: inset 0 0 0 1px var(--vp-c-divider);
+  margin: 1.5rem 0;
+}
+
+.vp-doc code {
+  color: var(--vp-c-brand-2);
+  background-color: rgba(189, 52, 254, 0.08);
+  padding: 0.2rem 0.4rem;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+.vp-doc div[class*="language-"] code {
+  color: inherit;
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Tables */
+.vp-doc table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+  margin: 2rem 0;
+  border: 1px solid var(--vp-c-divider);
+}
+
+.vp-doc th {
+  background-color: var(--vp-c-bg-soft);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: var(--vp-c-text-2);
+}
+
+.vp-doc th, .vp-doc td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.vp-doc tr:last-child td {
+  border-bottom: none;
+}
+
+.vp-doc tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.vp-doc tbody tr:hover {
+  background-color: var(--vp-c-bg-soft);
+}
+
+/* Lists */
+.vp-doc ul, .vp-doc ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.vp-doc li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+.vp-doc li::marker {
+  color: var(--vp-c-brand-1);
+}
