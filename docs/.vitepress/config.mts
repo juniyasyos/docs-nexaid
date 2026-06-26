@@ -6,12 +6,13 @@ export default withMermaid(
   base: '/docs-nexaid/',
   title: 'NexaID Docs',
   description: 'Documentation for NexaID Identity and Access Management platform.',
+  head: [['link', { rel: 'icon', href: '/docs-nexaid/logo.jpg' }]],
 
   cleanUrls: true,
   lastUpdated: true,
 
   themeConfig: {
-    logo: '/logo.svg',
+    logo: '/logo.jpg',
 
     nav: [
       { text: 'Docs', link: '/guide/', activeMatch: '^/(guide|sso|iam|applications|deployment|troubleshooting)/' },
@@ -28,210 +29,210 @@ export default withMermaid(
 
     sidebar: {
       // Unified sidebar — muncul di semua seksi docs
-      '/guide/': [{ text: 'Getting Started', collapsed: true, items: [
+      '/guide/': [{ text: 'Getting Started', collapsed: false, items: [
         { text: 'Introduction', link: '/guide/introduction' },
         { text: 'Quick Start', link: '/guide/quick-start' },
         { text: 'Core Concepts', link: '/guide/core-concepts' }
-      ]}, { text: 'Single Sign-On', collapsed: true, items: [
+      ]}, { text: 'Single Sign-On', collapsed: false, items: [
         { text: 'Overview', link: '/sso/' },
         { text: 'SSO Flow', link: '/sso/flow' },
         { text: 'Login', link: '/sso/login' },
         { text: 'Callback', link: '/sso/callback' },
         { text: 'Logout', link: '/sso/logout' }
-      ]}, { text: 'Identity & Access Management', collapsed: true, items: [
+      ]}, { text: 'Identity & Access Management', collapsed: false, items: [
         { text: 'Overview', link: '/iam/' },
         { text: 'Users', link: '/iam/users' },
         { text: 'Roles', link: '/iam/roles' },
         { text: 'Permissions', link: '/iam/permissions' },
         { text: 'Access Profiles', link: '/iam/access-profiles' },
         { text: 'Departments', link: '/iam/departments' }
-      ]}, { text: 'Applications', collapsed: true, items: [
+      ]}, { text: 'Applications', collapsed: false, items: [
         { text: 'Overview', link: '/applications/' },
         { text: 'App Registration', link: '/applications/app-registration' },
         { text: 'App Key', link: '/applications/app-key' },
         { text: 'Client Configuration', link: '/applications/client-configuration' },
         { text: 'Integration Checklist', link: '/applications/integration-checklist' }
-      ]}, { text: 'Deployment', collapsed: true, items: [
+      ]}, { text: 'Deployment', collapsed: false, items: [
         { text: 'Overview', link: '/deployment/' },
         { text: 'Environment', link: '/deployment/environment' },
         { text: 'Docker', link: '/deployment/docker' },
         { text: 'Production', link: '/deployment/production' }
-      ]}, { text: 'Troubleshooting', collapsed: true, items: [
+      ]}, { text: 'Troubleshooting', collapsed: false, items: [
         { text: 'Overview', link: '/troubleshooting/' },
         { text: 'SSO Errors', link: '/troubleshooting/sso-errors' },
         { text: 'Token Errors', link: '/troubleshooting/token-errors' },
         { text: 'Common Issues', link: '/troubleshooting/common-issues' }
       ]}],
 
-      '/sso/': [{ text: 'Getting Started', collapsed: true, items: [
+      '/sso/': [{ text: 'Getting Started', collapsed: false, items: [
         { text: 'Introduction', link: '/guide/introduction' },
         { text: 'Quick Start', link: '/guide/quick-start' },
         { text: 'Core Concepts', link: '/guide/core-concepts' }
-      ]}, { text: 'Single Sign-On', collapsed: true, items: [
+      ]}, { text: 'Single Sign-On', collapsed: false, items: [
         { text: 'Overview', link: '/sso/' },
         { text: 'SSO Flow', link: '/sso/flow' },
         { text: 'Login', link: '/sso/login' },
         { text: 'Callback', link: '/sso/callback' },
         { text: 'Logout', link: '/sso/logout' }
-      ]}, { text: 'Identity & Access Management', collapsed: true, items: [
+      ]}, { text: 'Identity & Access Management', collapsed: false, items: [
         { text: 'Overview', link: '/iam/' },
         { text: 'Users', link: '/iam/users' },
         { text: 'Roles', link: '/iam/roles' },
         { text: 'Permissions', link: '/iam/permissions' },
         { text: 'Access Profiles', link: '/iam/access-profiles' },
         { text: 'Departments', link: '/iam/departments' }
-      ]}, { text: 'Applications', collapsed: true, items: [
+      ]}, { text: 'Applications', collapsed: false, items: [
         { text: 'Overview', link: '/applications/' },
         { text: 'App Registration', link: '/applications/app-registration' },
         { text: 'App Key', link: '/applications/app-key' },
         { text: 'Client Configuration', link: '/applications/client-configuration' },
         { text: 'Integration Checklist', link: '/applications/integration-checklist' }
-      ]}, { text: 'Deployment', collapsed: true, items: [
+      ]}, { text: 'Deployment', collapsed: false, items: [
         { text: 'Overview', link: '/deployment/' },
         { text: 'Environment', link: '/deployment/environment' },
         { text: 'Docker', link: '/deployment/docker' },
         { text: 'Production', link: '/deployment/production' }
-      ]}, { text: 'Troubleshooting', collapsed: true, items: [
+      ]}, { text: 'Troubleshooting', collapsed: false, items: [
         { text: 'Overview', link: '/troubleshooting/' },
         { text: 'SSO Errors', link: '/troubleshooting/sso-errors' },
         { text: 'Token Errors', link: '/troubleshooting/token-errors' },
         { text: 'Common Issues', link: '/troubleshooting/common-issues' }
       ]}],
 
-      '/iam/': [{ text: 'Getting Started', collapsed: true, items: [
+      '/iam/': [{ text: 'Getting Started', collapsed: false, items: [
         { text: 'Introduction', link: '/guide/introduction' },
         { text: 'Quick Start', link: '/guide/quick-start' },
         { text: 'Core Concepts', link: '/guide/core-concepts' }
-      ]}, { text: 'Single Sign-On', collapsed: true, items: [
+      ]}, { text: 'Single Sign-On', collapsed: false, items: [
         { text: 'Overview', link: '/sso/' },
         { text: 'SSO Flow', link: '/sso/flow' },
         { text: 'Login', link: '/sso/login' },
         { text: 'Callback', link: '/sso/callback' },
         { text: 'Logout', link: '/sso/logout' }
-      ]}, { text: 'Identity & Access Management', collapsed: true, items: [
+      ]}, { text: 'Identity & Access Management', collapsed: false, items: [
         { text: 'Overview', link: '/iam/' },
         { text: 'Users', link: '/iam/users' },
         { text: 'Roles', link: '/iam/roles' },
         { text: 'Permissions', link: '/iam/permissions' },
         { text: 'Access Profiles', link: '/iam/access-profiles' },
         { text: 'Departments', link: '/iam/departments' }
-      ]}, { text: 'Applications', collapsed: true, items: [
+      ]}, { text: 'Applications', collapsed: false, items: [
         { text: 'Overview', link: '/applications/' },
         { text: 'App Registration', link: '/applications/app-registration' },
         { text: 'App Key', link: '/applications/app-key' },
         { text: 'Client Configuration', link: '/applications/client-configuration' },
         { text: 'Integration Checklist', link: '/applications/integration-checklist' }
-      ]}, { text: 'Deployment', collapsed: true, items: [
+      ]}, { text: 'Deployment', collapsed: false, items: [
         { text: 'Overview', link: '/deployment/' },
         { text: 'Environment', link: '/deployment/environment' },
         { text: 'Docker', link: '/deployment/docker' },
         { text: 'Production', link: '/deployment/production' }
-      ]}, { text: 'Troubleshooting', collapsed: true, items: [
+      ]}, { text: 'Troubleshooting', collapsed: false, items: [
         { text: 'Overview', link: '/troubleshooting/' },
         { text: 'SSO Errors', link: '/troubleshooting/sso-errors' },
         { text: 'Token Errors', link: '/troubleshooting/token-errors' },
         { text: 'Common Issues', link: '/troubleshooting/common-issues' }
       ]}],
 
-      '/applications/': [{ text: 'Getting Started', collapsed: true, items: [
+      '/applications/': [{ text: 'Getting Started', collapsed: false, items: [
         { text: 'Introduction', link: '/guide/introduction' },
         { text: 'Quick Start', link: '/guide/quick-start' },
         { text: 'Core Concepts', link: '/guide/core-concepts' }
-      ]}, { text: 'Single Sign-On', collapsed: true, items: [
+      ]}, { text: 'Single Sign-On', collapsed: false, items: [
         { text: 'Overview', link: '/sso/' },
         { text: 'SSO Flow', link: '/sso/flow' },
         { text: 'Login', link: '/sso/login' },
         { text: 'Callback', link: '/sso/callback' },
         { text: 'Logout', link: '/sso/logout' }
-      ]}, { text: 'Identity & Access Management', collapsed: true, items: [
+      ]}, { text: 'Identity & Access Management', collapsed: false, items: [
         { text: 'Overview', link: '/iam/' },
         { text: 'Users', link: '/iam/users' },
         { text: 'Roles', link: '/iam/roles' },
         { text: 'Permissions', link: '/iam/permissions' },
         { text: 'Access Profiles', link: '/iam/access-profiles' },
         { text: 'Departments', link: '/iam/departments' }
-      ]}, { text: 'Applications', collapsed: true, items: [
+      ]}, { text: 'Applications', collapsed: false, items: [
         { text: 'Overview', link: '/applications/' },
         { text: 'App Registration', link: '/applications/app-registration' },
         { text: 'App Key', link: '/applications/app-key' },
         { text: 'Client Configuration', link: '/applications/client-configuration' },
         { text: 'Integration Checklist', link: '/applications/integration-checklist' }
-      ]}, { text: 'Deployment', collapsed: true, items: [
+      ]}, { text: 'Deployment', collapsed: false, items: [
         { text: 'Overview', link: '/deployment/' },
         { text: 'Environment', link: '/deployment/environment' },
         { text: 'Docker', link: '/deployment/docker' },
         { text: 'Production', link: '/deployment/production' }
-      ]}, { text: 'Troubleshooting', collapsed: true, items: [
+      ]}, { text: 'Troubleshooting', collapsed: false, items: [
         { text: 'Overview', link: '/troubleshooting/' },
         { text: 'SSO Errors', link: '/troubleshooting/sso-errors' },
         { text: 'Token Errors', link: '/troubleshooting/token-errors' },
         { text: 'Common Issues', link: '/troubleshooting/common-issues' }
       ]}],
 
-      '/deployment/': [{ text: 'Getting Started', collapsed: true, items: [
+      '/deployment/': [{ text: 'Getting Started', collapsed: false, items: [
         { text: 'Introduction', link: '/guide/introduction' },
         { text: 'Quick Start', link: '/guide/quick-start' },
         { text: 'Core Concepts', link: '/guide/core-concepts' }
-      ]}, { text: 'Single Sign-On', collapsed: true, items: [
+      ]}, { text: 'Single Sign-On', collapsed: false, items: [
         { text: 'Overview', link: '/sso/' },
         { text: 'SSO Flow', link: '/sso/flow' },
         { text: 'Login', link: '/sso/login' },
         { text: 'Callback', link: '/sso/callback' },
         { text: 'Logout', link: '/sso/logout' }
-      ]}, { text: 'Identity & Access Management', collapsed: true, items: [
+      ]}, { text: 'Identity & Access Management', collapsed: false, items: [
         { text: 'Overview', link: '/iam/' },
         { text: 'Users', link: '/iam/users' },
         { text: 'Roles', link: '/iam/roles' },
         { text: 'Permissions', link: '/iam/permissions' },
         { text: 'Access Profiles', link: '/iam/access-profiles' },
         { text: 'Departments', link: '/iam/departments' }
-      ]}, { text: 'Applications', collapsed: true, items: [
+      ]}, { text: 'Applications', collapsed: false, items: [
         { text: 'Overview', link: '/applications/' },
         { text: 'App Registration', link: '/applications/app-registration' },
         { text: 'App Key', link: '/applications/app-key' },
         { text: 'Client Configuration', link: '/applications/client-configuration' },
         { text: 'Integration Checklist', link: '/applications/integration-checklist' }
-      ]}, { text: 'Deployment', collapsed: true, items: [
+      ]}, { text: 'Deployment', collapsed: false, items: [
         { text: 'Overview', link: '/deployment/' },
         { text: 'Environment', link: '/deployment/environment' },
         { text: 'Docker', link: '/deployment/docker' },
         { text: 'Production', link: '/deployment/production' }
-      ]}, { text: 'Troubleshooting', collapsed: true, items: [
+      ]}, { text: 'Troubleshooting', collapsed: false, items: [
         { text: 'Overview', link: '/troubleshooting/' },
         { text: 'SSO Errors', link: '/troubleshooting/sso-errors' },
         { text: 'Token Errors', link: '/troubleshooting/token-errors' },
         { text: 'Common Issues', link: '/troubleshooting/common-issues' }
       ]}],
 
-      '/troubleshooting/': [{ text: 'Getting Started', collapsed: true, items: [
+      '/troubleshooting/': [{ text: 'Getting Started', collapsed: false, items: [
         { text: 'Introduction', link: '/guide/introduction' },
         { text: 'Quick Start', link: '/guide/quick-start' },
         { text: 'Core Concepts', link: '/guide/core-concepts' }
-      ]}, { text: 'Single Sign-On', collapsed: true, items: [
+      ]}, { text: 'Single Sign-On', collapsed: false, items: [
         { text: 'Overview', link: '/sso/' },
         { text: 'SSO Flow', link: '/sso/flow' },
         { text: 'Login', link: '/sso/login' },
         { text: 'Callback', link: '/sso/callback' },
         { text: 'Logout', link: '/sso/logout' }
-      ]}, { text: 'Identity & Access Management', collapsed: true, items: [
+      ]}, { text: 'Identity & Access Management', collapsed: false, items: [
         { text: 'Overview', link: '/iam/' },
         { text: 'Users', link: '/iam/users' },
         { text: 'Roles', link: '/iam/roles' },
         { text: 'Permissions', link: '/iam/permissions' },
         { text: 'Access Profiles', link: '/iam/access-profiles' },
         { text: 'Departments', link: '/iam/departments' }
-      ]}, { text: 'Applications', collapsed: true, items: [
+      ]}, { text: 'Applications', collapsed: false, items: [
         { text: 'Overview', link: '/applications/' },
         { text: 'App Registration', link: '/applications/app-registration' },
         { text: 'App Key', link: '/applications/app-key' },
         { text: 'Client Configuration', link: '/applications/client-configuration' },
         { text: 'Integration Checklist', link: '/applications/integration-checklist' }
-      ]}, { text: 'Deployment', collapsed: true, items: [
+      ]}, { text: 'Deployment', collapsed: false, items: [
         { text: 'Overview', link: '/deployment/' },
         { text: 'Environment', link: '/deployment/environment' },
         { text: 'Docker', link: '/deployment/docker' },
         { text: 'Production', link: '/deployment/production' }
-      ]}, { text: 'Troubleshooting', collapsed: true, items: [
+      ]}, { text: 'Troubleshooting', collapsed: false, items: [
         { text: 'Overview', link: '/troubleshooting/' },
         { text: 'SSO Errors', link: '/troubleshooting/sso-errors' },
         { text: 'Token Errors', link: '/troubleshooting/token-errors' },
