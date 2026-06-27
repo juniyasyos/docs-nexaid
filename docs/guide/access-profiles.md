@@ -49,6 +49,25 @@ Meskipun NexaID sangat merekomendasikan penggunaan **Access Profile** untuk mana
 
 ---
 
+## Penanganan Multi-Role (Tumpang Tindih Profil)
+
+Sangat mungkin terjadi kasus di mana seorang pengguna (User) diberikan lebih dari satu Access Profile, dan profil-profil tersebut memberikan **Role yang berbeda untuk satu aplikasi yang sama**. 
+
+Misalnya:
+* **Access Profile A** memberikan `role: admin` untuk Aplikasi X.
+* **Access Profile B** memberikan `role: reviewer` untuk Aplikasi X.
+* User "Budi" diberikan kedua Access Profile tersebut.
+
+Bagaimana NexaID menanganinya?
+
+1. **Di Sisi NexaID (Auth Server):** Sistem **tidak akan menolak atau saling menimpa** role tersebut. NexaID akan mengakomodir penumpukan ini dan secara sah menyatakan Budi memiliki kedua role tersebut untuk Aplikasi X. Saat proses *Single Sign-On (SSO)*, NexaID akan mengirimkan seluruh role tersebut dalam bentuk *array* (daftar).
+2. **Di Sisi Aplikasi Klien:** Menjadi **tanggung jawab aplikasi klien** untuk "membaca" daftar role tersebut dan menggabungkan (*Union*) seluruh hak akses (*permissions*) yang dibawa oleh masing-masing role. 
+    * Jika role `admin` membawa permission `[read, write]` dan role `reviewer` membawa permission `[verify]`, maka aplikasi klien harus mengevaluasi hak akses akhir Budi menjadi gabungan seluruhnya: `[read, write, verify]`.
+
+Hal ini menegaskan prinsip *Separation of Concerns*: NexaID hanya bertugas mendistribusikan identitas dan daftar role secara valid, sementara aplikasi klien bertugas menjalankan evaluasi akhir otorisasi (logika bisnis).
+
+---
+
 ## Penggunaan pada Dashboard
 
 Untuk membuat dan mendistribusikan *Access Profile*, langkahnya sangat lugas:
